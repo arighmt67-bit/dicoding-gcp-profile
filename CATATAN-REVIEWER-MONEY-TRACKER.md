@@ -27,7 +27,7 @@ Berikut adalah detail implementasi dan verifikasi untuk **Proyek Akhir: Money Tr
 | Kriteria / Fitur | Spesifikasi Implementasi | Status | Bukti Nyata / Endpoint |
 |---|---|---|---|
 | **Kriteria 1: Project Name** | Sesuai format `submission-mgce-namapeserta` | ✅ Terpenuhi | `submission-mgce-arirahmatr` |
-| **Kriteria 2: Akses Reviewer** | Hak akses granular ke `reviewer_googlecloud@dicoding.com` | ✅ Terpenuhi | `roles/appengine.appViewer`, `roles/cloudsql.viewer`, `roles/browser`, `roles/artifactregistry.reader` |
+| **Kriteria 2: Akses Reviewer** | Hak akses reviewer ke `reviewer_googlecloud@dicoding.com` | ✅ Terpenuhi | `roles/viewer`, `roles/storage.admin`, `roles/appengine.appViewer`, `roles/cloudsql.viewer`, `roles/browser`, `roles/artifactregistry.reader` |
 | **Kriteria 3: Deploy App** | Full stack deployed dan functional | ✅ Terpenuhi | Frontend, Backend, Cloud SQL, dan Cloud Storage aktif terhubung |
 | **Saran 1: Kesesuaian Region & Layanan** | Semua service di `asia-southeast2` (Jakarta) sesuai arsitektur | ⭐ Bintang 5 | GAE (`asia-southeast2`), Cloud SQL (`asia-southeast2-b`), GCS (`asia-southeast2`) |
 | **Saran 2: Principle of Least Privilege** | Tidak memberikan `roles/editor` atau `roles/owner` | ⭐ Bintang 5 | Hanya role view spesifik per service (`appViewer`, `cloudsql.viewer`, `browser`) |
