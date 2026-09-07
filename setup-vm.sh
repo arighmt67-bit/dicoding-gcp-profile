@@ -1,3 +1,157 @@
+#!/bin/bash
+set -e
+
+echo "=== [1/4] Updating package lists & installing Nginx ==="
+sudo apt-get update -y
+sudo apt-get install -y nginx
+
+echo "=== [2/4] Configuring Web Root Directory ==="
+sudo rm -rf /var/www/html/*
+
+echo "=== [3/4] Copying Profile Application Files ==="
+sudo tee /var/www/html/index.html > /dev/null <<'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ari Rahmat | Cloud & DevOps Enthusiast</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background-glow"></div>
+  
+  <div class="container">
+    <!-- Header Banner & Avatar Section -->
+    <header class="profile-header">
+      <div class="banner-wrapper">
+        <img src="https://storage.googleapis.com/arirahmat-profile-bucket/banner.jpg" alt="Profile Banner" class="profile-banner">
+      </div>
+      <div class="profile-intro">
+        <div class="avatar-wrapper">
+          <img src="https://storage.googleapis.com/arirahmat-profile-bucket/profile.jpg" alt="Ari Rahmat" class="profile-avatar">
+        </div>
+        <div class="profile-title">
+          <h1>Ari Rahmat</h1>
+          <div class="badge-tag">Tech Support &rarr; Cloud & DevOps Aspirant</div>
+          <p class="tagline">Transitioning from hands-on IT & Technical Support into scalable Cloud Infrastructure, Automation, and DevOps Engineering.</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Grid Content -->
+    <main class="main-content">
+      <!-- About Section -->
+      <section class="card about-card">
+        <div class="card-header">
+          <span class="card-icon">👤</span>
+          <h2>About Me</h2>
+        </div>
+        <p>
+          Experienced in technical support, system troubleshooting, and infrastructure administration. Currently leveling up through intensive cloud learning paths (AWS re/Start Graduate, Google Cloud Architecture, and DevOps practices). Passionate about Linux systems, containerization, and automated CI/CD workflows.
+        </p>
+      </section>
+
+      <!-- Technical Focus & Skills -->
+      <section class="card skills-card">
+        <div class="card-header">
+          <span class="card-icon">⚡</span>
+          <h2>Technical Focus & Toolchain</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>Cloud & Platform</h3>
+            <div class="tags">
+              <span class="tag">Google Cloud (GCP)</span>
+              <span class="tag">Compute Engine</span>
+              <span class="tag">Cloud Storage</span>
+              <span class="tag">AWS Core Services</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3>DevOps & Automation</h3>
+            <div class="tags">
+              <span class="tag">Docker</span>
+              <span class="tag">Linux / Bash Scripting</span>
+              <span class="tag">CI/CD Fundamentals</span>
+              <span class="tag">Git & GitHub</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3>Support & Infrastructure</h3>
+            <div class="tags">
+              <span class="tag">Network Diagnostics</span>
+              <span class="tag">System Troubleshooting</span>
+              <span class="tag">IT Support Operations</span>
+              <span class="tag">Security Baseline</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cloud Journey & Milestones -->
+      <section class="card journey-card">
+        <div class="card-header">
+          <span class="card-icon">🚀</span>
+          <h2>Learning Milestones & Certifications</h2>
+        </div>
+        <ul class="timeline">
+          <li class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Google Cloud Engineer Learning Path</h4>
+              <p class="timeline-sub">Dicoding Academy — Compute Engine, Cloud Storage & IAM Deployment</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>AWS re/Start Graduate</h4>
+              <p class="timeline-sub">Comprehensive Cloud Infrastructure, Linux administration & Networking</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>IT Technical Support Foundations</h4>
+              <p class="timeline-sub">Hardware, OS maintenance, networking diagnostics, and operational support</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Connect Section -->
+      <section class="card connect-card">
+        <div class="card-header">
+          <span class="card-icon">📫</span>
+          <h2>Get In Touch</h2>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:arirahmatromadhon@gmail.com" class="contact-button email">
+            <span>✉️</span> arirahmatromadhon@gmail.com
+          </a>
+          <a href="https://github.com/arighmt67-bit" target="_blank" rel="noopener noreferrer" class="contact-button github">
+            <span>🐙</span> GitHub: arighmt67-bit
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="profile-footer">
+      <p>Hosted on <strong>Google Compute Engine (GCE)</strong> &bull; Static Assets on <strong>Google Cloud Storage (GCS)</strong></p>
+      <p class="copyright">&copy; 2026 Ari Rahmat. Built for Dicoding GCP Submission.</p>
+    </footer>
+  </div>
+</body>
+</html>
+
+EOF
+
+sudo tee /var/www/html/style.css > /dev/null <<'EOF'
 :root {
   --bg-color: #0b0f19;
   --card-bg: rgba(18, 24, 38, 0.75);
@@ -365,3 +519,16 @@ body {
     justify-content: center;
   }
 }
+
+EOF
+
+echo "=== [4/4] Setting Permissions & Restarting Nginx ==="
+sudo chown -R www-data:www-data /var/www/html
+sudo chmod -R 755 /var/www/html
+sudo systemctl restart nginx
+sudo systemctl enable nginx
+
+echo "================================================="
+echo "✅ DEPLOYMENT SUKSES! Web Profile Nginx sudah aktif."
+echo "Silakan buka http://$(curl -s ifconfig.me) di browser."
+echo "================================================="
